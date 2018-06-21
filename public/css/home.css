@@ -1,0 +1,16 @@
+.tag
+{
+    background: lightblue;
+    font-style: none;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+}
+.poster
+{
+    text-align: right;
+}
+.panel-body
+{
+    background-color: antiquewhite;
+}

@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('dept_id');
+            $table->string('Heading');
             $table->string('Question');
             $table->boolean('PrivateQuestion');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

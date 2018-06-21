@@ -31,6 +31,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('heading') ? ' has-error' : '' }}">
+                            <label for="heading" class="col-md-4 control-label">Heading</label>
+
+                            <div class="col-md-6">
+                                <input id="heading" type="text" class="form-control" name="heading" required></input>
+
+                                @if ($errors->has('heading'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('heading') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('question') ? ' has-error' : '' }}">
                             <label for="question" class="col-md-4 control-label">Question</label>
 
