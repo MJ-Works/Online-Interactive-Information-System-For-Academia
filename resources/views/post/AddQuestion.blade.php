@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <link href="{{ asset('css/multiple-select.css') }}" rel="stylesheet">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -16,11 +17,9 @@
 
                             <div class="col-md-6">
                             <select id = "Department" name = "Department" class="form-control" require>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                                     @foreach($allDepartment as $department)
+                                        <option value="{{$department->id}}">{{$department->DepartmentName}}</option>
+                                    @endforeach
                             </select>
 
                                 @if ($errors->has('Department'))
@@ -87,6 +86,25 @@
                             </div>
                         </div>
 
+                         <div class="form-group{{ $errors->has('Tags') ? ' has-error' : '' }}">
+                            <label for="Tags" class="col-md-4 control-label">Tags</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name = "Tags[]" multiple="multiple">
+                                    @foreach($allTag as $tag)
+                                        <option value="{{$tag->id}}">{{$tag->TagName}}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('Tags'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('Tags') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
@@ -117,5 +135,4 @@
         '//www.tinymce.com/css/codepen.min.css']
     });
 </script>
-
 @endsection
