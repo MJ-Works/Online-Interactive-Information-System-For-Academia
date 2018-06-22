@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/info', 'HomeController@AddPersonalInfo')->name('Info');
-Route::get('/addQuestion', 'QuestionController@addQuestion')->name('Question');
+Route::get('/addQuestion', 'QuestionController@addQuestion')->name('addQuestion');
+Route::post('/postQuestion', 'QuestionController@postQuestion')->name('PostQuestion');;
+Route::get('/viewQuestion', 'QuestionController@viewQuestion')->name('Question');
 Route::get('/addDepartment', 'AdminController@addDepartment')->name('Department');
 Route::get('/addTag', 'AdminController@addTag')->name('Tag');

@@ -8,14 +8,14 @@
                 <div class="panel-heading">Add Question</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('PostQuestion') }}">
                         {{ csrf_field() }}
 
-                        <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
-                            <label for="department" class="col-md-4 control-label">Department</label>
+                        <div class="form-group{{ $errors->has('Department') ? ' has-error' : '' }}">
+                            <label for="Department" class="col-md-4 control-label">Department</label>
 
                             <div class="col-md-6">
-                            <select id = "department" name = "department" class="form-control" require>
+                            <select id = "Department" name = "Department" class="form-control" require>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -23,37 +23,37 @@
                                 <option>5</option>
                             </select>
 
-                                @if ($errors->has('department'))
+                                @if ($errors->has('Department'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('department') }}</strong>
+                                        <strong>{{ $errors->first('Department') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('heading') ? ' has-error' : '' }}">
-                            <label for="heading" class="col-md-4 control-label">Heading</label>
+                        <div class="form-group{{ $errors->has('Heading') ? ' has-error' : '' }}">
+                            <label for="Heading" class="col-md-4 control-label">Heading</label>
 
                             <div class="col-md-6">
-                                <input id="heading" type="text" class="form-control" name="heading" required></input>
+                                <input id="Heading" type="text" class="form-control" name="Heading" required></input>
 
-                                @if ($errors->has('heading'))
+                                @if ($errors->has('Heading'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('heading') }}</strong>
+                                        <strong>{{ $errors->first('Heading') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('question') ? ' has-error' : '' }}">
-                            <label for="question" class="col-md-4 control-label">Question</label>
+                        <div class="form-group{{ $errors->has('Question') ? ' has-error' : '' }}">
+                            <label for="Question" class="col-md-4 control-label">Question</label>
 
                             <div class="col-md-6">
-                                <textarea id="question" type="text" class="form-control" name="question" required></textarea>
+                                <textarea id="Question" class="form-control" name="Question"></textarea>
 
-                                @if ($errors->has('question'))
+                                @if ($errors->has('Question'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('question') }}</strong>
+                                        <strong>{{ $errors->first('Question') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -63,16 +63,16 @@
                             <label for="PrivateQuestion" class="col-md-4"></label>
 
                             <div class="col-md-6">
-                                <div class="row" id="PrivateQuestion">
+                                <div class="row" id="PrivateQuestionRadio">
                                     <div class="col-md-6 form-check">
-                                        <input class="form-check-input" type="radio" name="PrivateQuestionRadio" id="PrivateQuestionRadio1" value="option1">
+                                        <input class="form-check-input" type="radio" name="PrivateQuestion" id="PrivateQuestionRadio1" value="1">
                                         <label class="form-check-label" for="PrivateQuestionRadio1">
                                             Private Question
                                         </label>
                                     </div>
 
                                      <div class="col-md-6 form-check">
-                                        <input class="form-check-input" type="radio" name="PrivateQuestionRadio" id="PrivateQuestionRadio2" value="option1" checked>
+                                        <input class="form-check-input" type="radio" name="PrivateQuestion" id="PrivateQuestionRadio2" value="0" checked>
                                         <label class="form-check-label" for="PrivateQuestionRadio2">
                                             Public Question
                                         </label>
