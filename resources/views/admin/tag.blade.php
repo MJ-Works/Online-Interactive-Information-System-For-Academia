@@ -12,48 +12,32 @@
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Tag Name</th>
                     <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($allTag as $key=>$tag)
                     <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><form class="form-horizontal" method="POST" action=""><button type="submit" class="btn btn-danger">Delete</button></form></td>
+                    <th scope="row">{{++$key}}</th>
+                    <td>{{$tag->TagName}}</td>
+                    <td><form class="form-horizontal" method="POST" action="{{ route('DeleteTag') }}">{{ csrf_field() }} <button type="submit" value = "{{$tag->id}}" name="submit" class="btn btn-danger">Delete</button></form></td>
                     </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td><form class="form-horizontal" method="POST" action=""><button type="submit" class="btn btn-danger">Delete</button></form></td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td><form class="form-horizontal" method="POST" action=""><button type="submit" class="btn btn-danger">Delete</button></form></td>
-                    </tr>
+                    @endforeach
                 </tbody>
                 </table>
                 
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('PostTag') }}">
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('tag') ? ' has-error' : '' }}">
-                            <label for="tag" class="col-md-4 control-label">Tag Name</label>
+                        <div class="form-group{{ $errors->has('TagName') ? ' has-error' : '' }}">
+                            <label for="TagName" class="col-md-4 control-label">Tag Name</label>
 
                             <div class="col-md-6">
-                                <input id="tag" type="text" class="form-control" name="tag" required></input>
+                                <input id="TagName" type="text" class="form-control" name="TagName" required></input>
 
-                                @if ($errors->has('tag'))
+                                @if ($errors->has('TagName'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('tag') }}</strong>
+                                        <strong>{{ $errors->first('TagName') }}</strong>
                                     </span>
                                 @endif
                             </div>

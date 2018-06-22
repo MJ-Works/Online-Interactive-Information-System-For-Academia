@@ -12,48 +12,32 @@
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Department Name</th>
                     <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($allDepartment as $key=>$department)
                     <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><form class="form-horizontal" method="POST" action=""><button type="submit" class="btn btn-danger">Delete</button></form></td>
+                    <th scope="row">{{++$key}}</th>
+                    <td>{{$department->DepartmentName}}</td>
+                    <td><form class="form-horizontal" method="POST" action="{{ route('DeleteDepartment') }}">{{ csrf_field() }} <button type="submit" value = "{{$department->id}}" name="submit" class="btn btn-danger">Delete</button></form></td>
                     </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td><form class="form-horizontal" method="POST" action=""><button type="submit" class="btn btn-danger">Delete</button></form></td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td><form class="form-horizontal" method="POST" action=""><button type="submit" class="btn btn-danger">Delete</button></form></td>
-                    </tr>
+                    @endforeach
                 </tbody>
                 </table>
 
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('PostDepartment') }}">
                         {{ csrf_field() }}
-                        <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
-                            <label for="department" class="col-md-4 control-label">Department Name</label>
+                        <div class="form-group{{ $errors->has('DepartmentName') ? ' has-error' : '' }}">
+                            <label for="DepartmentName" class="col-md-4 control-label">Department Name</label>
 
                             <div class="col-md-6">
-                                <input id="department" type="text" class="form-control" name="department" required></input>
+                                <input id="DepartmentName" type="text" class="form-control" name="DepartmentName" required></input>
 
-                                @if ($errors->has('department'))
+                                @if ($errors->has('DepartmentName'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('department') }}</strong>
+                                        <strong>{{ $errors->first('DepartmentName') }}</strong>
                                     </span>
                                 @endif
                             </div>

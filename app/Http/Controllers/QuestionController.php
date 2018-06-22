@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\question;
+use Auth;
 
 class QuestionController extends Controller
 {
@@ -20,7 +21,7 @@ class QuestionController extends Controller
         ]);
         
         $dbvar = new question();
-        $dbvar->user_id = '1';
+        $dbvar->user_id = Auth::user()->id;
         $dbvar->dept_id = '1';
         $dbvar->Heading = $request->Heading;
         $dbvar->Question = $request->Question;
