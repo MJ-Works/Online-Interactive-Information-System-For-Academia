@@ -18,8 +18,8 @@ class CreateQuestionTagsTable extends Migration
             $table->foreign('question_id')->references('id')
                   ->on('questions')->onDelete('cascade');
       
-            $table->integer('tag_id')->unsigned()->nullable();
-            $table->foreign('tag_id')->references('id')
+            $table->integer('tags_id')->unsigned()->nullable();
+            $table->foreign('tags_id')->references('id')
                   ->on('tags')->onDelete('cascade');
             $table->timestamps();
         });

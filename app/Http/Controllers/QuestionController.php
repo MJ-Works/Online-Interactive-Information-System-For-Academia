@@ -30,6 +30,7 @@ class QuestionController extends Controller
         $dbvar->dept_id = '2';
         $dbvar->Heading = $request->Heading;
         $dbvar->Question = $request->Question;
+        $dbvar->Votes = 0;
         $dbvar->PrivateQuestion = $request->PrivateQuestion;
         $dbvar->save();
         
@@ -37,7 +38,7 @@ class QuestionController extends Controller
         {
             $dbvar1 = new question_tag();
             $dbvar1->question_id = $dbvar->id;
-            $dbvar1->tag_id = $tag;
+            $dbvar1->tags_id = $tag;
             $dbvar1->save();
         }
         

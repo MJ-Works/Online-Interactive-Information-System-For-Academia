@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\question;
+use App\tags;
+use App\question_tag;
+use App\answer;
 
 class HomeController extends Controller
 {
@@ -23,7 +27,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $allQuestion = question::with('tags','answers','User')->limit(50)->get();
+        // $i=0;
+        // foreach($allQuestion as $question)
+        // {
+        //     if($i>0)
+        //     {
+        //         foreach($question->tags as $tag)
+        //             return $tag->TagName;
+        //     }
+        //     $i++;
+        // }
+        //return $allQuestion;
+        return view('home',compact('allQuestion'));
     }
 
     public function addPersonalInfo()
