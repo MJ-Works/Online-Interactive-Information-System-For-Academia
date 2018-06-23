@@ -24,6 +24,23 @@
                         </p>
                    </div>
                 </div>
+                <div class="panel-body">
+                    <h3>{{$question->answers->count()}} Answers</h3>
+                </div>
+                <hr>
+                @foreach($question->answers as $answer)
+                <div class="panel-body">
+                   <div class="col-md-1">
+                        <button class="btn btn-success vote">+</button>
+                        <p class="votes">{{$answer->UpVote}}</p>
+                        <button class="btn btn-danger vote">-</button>
+                   </div>
+                   <div class="col-md-10 col-md-offset-1 question">
+                        <p>{{strip_tags($answer->Answer)}}
+                        </p>
+                   </div>
+                </div>
+                @endforeach
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('Answer',$question->id) }}">

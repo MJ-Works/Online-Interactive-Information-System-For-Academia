@@ -50,6 +50,7 @@ class QuestionController extends Controller
     public function viewQuestion($id)
     {
        $question = question::with('tags','answers','User')->find($id);
+       //return $question;
         return view('post.ViewQuestion',compact('error','question'));
     }
 
