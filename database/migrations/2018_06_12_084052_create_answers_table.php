@@ -18,8 +18,8 @@ class CreateAnswersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('question_id');
             $table->string('Answer');
-            $table->bigInteger('UpVote');
-            $table->bigInteger('DownVote');
+            $table->integer('UpVote');
+            $table->integer('DownVote');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
             $table->timestamps();

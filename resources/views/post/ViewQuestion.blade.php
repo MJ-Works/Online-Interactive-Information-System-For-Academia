@@ -15,9 +15,9 @@
 
                 <div class="panel-body">
                    <div class="col-md-1">
-                   <form class="form-horizontal" method="POST" action="{{ route('QuestionVote',$question->id) }}"> {{ csrf_field() }} <button name = "UpVote" Type = "submit" class="btn btn-success vote">+</button></form>
+                   <form class="form-horizontal" method="POST" action="{{ route('QuestionVote',$question->id) }}"> {{ csrf_field() }} <button name = "submit" value = "UpVote" Type = "submit" class="btn btn-success vote">+</button></form>
                         <p class="votes">{{$question->votes}}</p>
-                        <form class="form-horizontal" method="POST" action="{{ route('QuestionVote',$question->id) }}"> {{ csrf_field() }} <button name = "DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
+                        <form class="form-horizontal" method="POST" action="{{ route('QuestionVote',$question->id) }}"> {{ csrf_field() }} <button name = "submit" value = "DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
                    </div>
                    <div class="col-md-10 col-md-offset-1 question">
                         <p>{{strip_tags($question->Question)}}
@@ -31,9 +31,9 @@
                 @foreach($question->answers as $answer)
                 <div class="panel-body">
                    <div class="col-md-1">
-                        <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id) }}"> {{ csrf_field() }} <button name = "UpVote" Type = "submit" class="btn btn-success vote">+</button></form>
+                        <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id, $question->id) }}"> {{ csrf_field() }} <button name = "submit" value= "UpVote" Type = "submit" class="btn btn-success vote">+</button></form>
                         <p class="votes">{{$answer->UpVote}}</p>
-                        <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id) }}"> {{ csrf_field() }} <button name = "DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
+                        <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id, $question->id) }}"> {{ csrf_field() }} <button name = "submit" value="DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
                    </div>
                    <div class="col-md-10 col-md-offset-1 question">
                         <p>{{strip_tags($answer->Answer)}}

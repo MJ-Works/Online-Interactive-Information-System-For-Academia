@@ -8,6 +8,7 @@ use App\answer;
 use App\tags;
 use App\question_tag;
 use App\departments;
+use App\VoteTable;
 use Auth;
 
 class QuestionController extends Controller
@@ -66,13 +67,57 @@ class QuestionController extends Controller
         return redirect()->route('Question', ['id' => $id]);
     }
 
-    public function voteAnswer($id)
+    public function voteAnswer($id, Request $request)
     {
-        return $id;
+        $answer = answer::find($id);
+
+        $alreadyVoted = VoteTable::where([
+            'answer_id' => $id,
+            'user_id' => Auth::user()->id
+        ])->get();
+
+        if(!$alreadyVoted->isEmpty()) {
+            return redirect()->route('Question', ['id' => $answer->question_id]);
+        }
+
+        if($request->submit == "UpVote")
+            $answer->UpVote++;
+        else $answer->UpVote--;
+
+        $answer->save();
+
+        $dbvar = new VoteTable();
+        $dbvar->answer_id = $id;
+        $dbvar->user_id = Auth::user()->id;
+        $dbvar->save();
+
+        return redirect()->route('Question', ['id' => $answer->question_id]);
     }
 
-    public function voteQuestion($id)
+    public function voteQuestion($id, Request $request)
     {
-        return $id;
+        $question = question::find($id);
+
+        $alreadyVoted = VoteTable::where([
+            'question_id' => $id,
+            'user_id' => Auth::user()->id
+        ])->get();
+
+        if(!$alreadyVoted->isEmpty()) {
+            return redirect()->route('Question', ['id' => $id]);
+        }
+
+        if($request->submit == "UpVote")
+            $question->votes++;
+        else $question->votes--;
+
+        $question->save();
+
+        $dbvar = new VoteTable();
+        $dbvar->question_id = $id;
+        $dbvar->user_id = Auth::user()->id;
+        $dbvar->save();
+
+        return redirect()->route('Question', ['id' => $id]);
     }
 }
