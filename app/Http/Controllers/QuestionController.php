@@ -65,4 +65,14 @@ class QuestionController extends Controller
         $dbvar->save();
         return redirect()->route('Question', ['id' => $id]);
     }
+
+    public function voteAnswer($id)
+    {
+        return $id;
+    }
+
+    public function voteQuestion($id)
+    {
+        return $id;
+    }
 }

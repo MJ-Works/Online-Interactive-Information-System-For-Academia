@@ -29,3 +29,5 @@ Route::get('/addTag', 'AdminController@addTag')->name('Tag');
 Route::post('/postTag', 'AdminController@postTag')->name('PostTag');
 Route::post('/deleteTag', 'AdminController@deleteTag')->name('DeleteTag');
 Route::post('/postAnswer/{id}', 'QuestionController@postAnswer')->name('Answer');
+Route::post('/voteAnswer/{id}', 'QuestionController@voteAnswer')->name('AnswerVote');
+Route::post('/voteQuestion/{id}', 'QuestionController@voteQuestion')->name('QuestionVote');
