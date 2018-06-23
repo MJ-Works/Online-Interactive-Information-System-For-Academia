@@ -61,6 +61,24 @@
                             </div>
                         </div>
 
+                         <div class="form-group{{ $errors->has('departments_id') ? ' has-error' : '' }}">
+                            <label for="departments_id" class="col-md-4 control-label">Department</label>
+
+                            <div class="col-md-6">
+                            <select id = "departments_id" name = "departments_id" class="form-control" require>
+                                     @foreach($data as $department)
+                                        <option value="{{$department->id}}">{{$department->DepartmentName}}</option>
+                                    @endforeach
+                            </select>
+
+                                @if ($errors->has('departments_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('departments_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
