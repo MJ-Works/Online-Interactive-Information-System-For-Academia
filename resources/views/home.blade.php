@@ -17,7 +17,7 @@
                    <div class="col-md-2 votes">{{$question->votes}} Votes</div>
                    <div class="col-md-2 answer">{{$question->answers->count()}} Answer</div>
                    <div class="col-md-8 question">
-                        <a href="">{{$question->Heading}}</a>
+                        <a href="{{url('viewQuestion',$question->id)}}">{{$question->Heading}}</a>
                         <div class="row">
                             <div class="col-md-6">
                                 @foreach($question->tags as $tag)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\question;
+use App\answer;
 use App\tags;
 use App\question_tag;
 use App\departments;
@@ -46,8 +47,21 @@ class QuestionController extends Controller
         return redirect('home');
     }
 
-    public function viewQuestion()
+    public function viewQuestion($id)
     {
-        return view('post.ViewQuestion',compact('error'));
+       $question = question::with('tags','answers','User')->find($id);
+        return view('post.ViewQuestion',compact('error','question'));
+    }
+
+    public function postAnswer($id, Request $request)
+    {
+        $dbvar = new answer();
+        $dbvar->user_id = Auth::user()->id;
+        $dbvar->question_id = $id;
+        $dbvar->Answer = $request->Answer;
+        $dbvar->UpVote = 0;
+        $dbvar->DownVote = 0;
+        $dbvar->save();
+        return redirect()->route('Question', ['id' => $id]);
     }
 }
