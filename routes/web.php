@@ -35,3 +35,5 @@ Route::get('/tags','QuestionController@tags')->name('Tags');
 Route::get('/questionByTag/{id}', 'QuestionController@questionbyTag')->name('QuestionByTag');
 Route::get('/departments','QuestionController@departments')->name('Departments');
 Route::get('/questionByDepartment/{id}', 'QuestionController@questionbyDepartment')->name('QuestionByDepartment');
+Route::get('/search','QuestionController@search')->name('Search');
+Route::post('/searchQuestion', 'QuestionController@searchQuestion')->name('SearchQuestion');

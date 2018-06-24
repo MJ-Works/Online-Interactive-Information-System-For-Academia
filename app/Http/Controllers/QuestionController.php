@@ -157,4 +157,16 @@ class QuestionController extends Controller
         
         return view('home',compact('allQuestion'));
     }
+
+    public function search()
+    {
+        return view('post.search',compact('error'));
+    }
+
+    public function searchQuestion(Request $request)
+    {
+        $like = '%'.$request->Search.'%';
+        $allQuestion = question::with('tags','answers','User')->where('Heading', 'like', $like)->get();
+        return view('home',compact('allQuestion'));
+    }
 }

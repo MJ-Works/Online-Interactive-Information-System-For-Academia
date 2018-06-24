@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-2">
             <p>Home</p>
-            <p><a href="">Tags</a></p>
-            <p><a href="">Department</a></p>
-            <p><a href="">Search</a></p>
+            <p><a href="{{ route('Tags') }}">Tags</a></p>
+            <p><a href="{{ route('Departments') }}">Departments</a></p>
+            <p><a href="{{ route('Search') }}">Search</a></p>
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
