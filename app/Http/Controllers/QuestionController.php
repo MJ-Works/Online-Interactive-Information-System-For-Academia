@@ -210,4 +210,19 @@ class QuestionController extends Controller
         $question->save();
         return redirect('home');
     }
+
+    public function editAnswer($id)
+    {
+        $answer = answer::find($id);
+        return view('post.EditAnswer',compact('answer'));
+    }
+
+    public function postEditAnswer($id, Request $request)
+    {
+        $answer = answer::find($id);
+        $answer->Answer = $request->Answer;
+        
+        $answer->save();
+        return redirect()->route('Question', ['id' => $answer->question_id]);
+    }
 }

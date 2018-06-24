@@ -48,6 +48,9 @@
                         <p class="votes">{{$answer->UpVote}}</p>
                         <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id, $question->id) }}"> {{ csrf_field() }} <button name = "submit" value="DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
                    </div>
+                   @if(Auth::user()->id == $answer->user_id)
+                        <a class="col-md-offset-10" href="{{ route('EditAnswer',$answer->id) }}">Edit</a>
+                    @endif
                    <div class="col-md-10 col-md-offset-1 question">
                         <p><?php echo($answer->Answer) ?>
                         </p>

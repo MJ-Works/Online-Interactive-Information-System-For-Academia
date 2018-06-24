@@ -39,3 +39,5 @@ Route::get('/search','QuestionController@search')->name('Search');
 Route::post('/searchQuestion', 'QuestionController@searchQuestion')->name('SearchQuestion');
 Route::get('/editQuestion/{id}', 'QuestionController@editQuestion')->name('EditQuestion');
 Route::post('/postEditQuestion/{id}', 'QuestionController@postEditQuestion')->name('PostEditQuestion');
+Route::get('/editAnswer/{id}', 'QuestionController@editAnswer')->name('EditAnswer');
+Route::post('/postEditAnswer/{id}', 'QuestionController@postEditAnswer')->name('PostEditAnswer');
