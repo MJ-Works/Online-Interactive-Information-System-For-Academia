@@ -27,7 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $allQuestion = question::with('tags','answers','User')->limit(50)->get();
+        $allQuestion = question::with('tags','answers','User')->orderBy('created_at', 'desc')->get();
         // $i=0;
         // foreach($allQuestion as $question)
         // {

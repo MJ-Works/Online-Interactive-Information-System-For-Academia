@@ -71,6 +71,9 @@ class QuestionController extends Controller
     {
         $answer = answer::find($id);
 
+        if($answer->user_id == Auth::user()->id)
+            return redirect()->route('Question', ['id' => $answer->question_id]);
+
         $alreadyVoted = VoteTable::where([
             'answer_id' => $id,
             'user_id' => Auth::user()->id
@@ -97,6 +100,9 @@ class QuestionController extends Controller
     public function voteQuestion($id, Request $request)
     {
         $question = question::find($id);
+
+        if($question->user_id == Auth::user()->id)
+        return redirect()->route('Question', ['id' => $id]);
 
         $alreadyVoted = VoteTable::where([
             'question_id' => $id,
@@ -134,7 +140,7 @@ class QuestionController extends Controller
         foreach($questions as $question)
             array_push($questionId, $question->id);
         
-        $allQuestion = question::with('tags','answers','User')->find($questionId);
+        $allQuestion = question::with('tags','answers','User')->orderBy('created_at', 'desc')->find($questionId);
         
         return view('home',compact('allQuestion'));
     }
@@ -153,7 +159,7 @@ class QuestionController extends Controller
         foreach($questions as $question)
             array_push($questionId, $question->id);
         
-        $allQuestion = question::with('tags','answers','User')->find($questionId);
+        $allQuestion = question::with('tags','answers','User')->orderBy('created_at', 'desc')->find($questionId);
         
         return view('home',compact('allQuestion'));
     }
@@ -166,7 +172,7 @@ class QuestionController extends Controller
     public function searchQuestion(Request $request)
     {
         $like = '%'.$request->Search.'%';
-        $allQuestion = question::with('tags','answers','User')->where('Heading', 'like', $like)->get();
+        $allQuestion = question::with('tags','answers','User')->orderBy('created_at', 'desc')->where('Heading', 'like', $like)->get();
         return view('home',compact('allQuestion'));
     }
 }
