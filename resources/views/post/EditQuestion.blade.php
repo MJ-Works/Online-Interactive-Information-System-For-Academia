@@ -51,7 +51,7 @@
                             <label for="Question" class="col-md-4 control-label">Question</label>
 
                             <div class="col-md-6">
-                                <textarea id="Question" class="form-control" name="Question">{{strip_tags($question->Question)}}</textarea>
+                                <textarea id="Question" class="form-control" name="Question"><?php echo($question->Question) ?></textarea>
 
                                 @if ($errors->has('Question'))
                                     <span class="help-block">
@@ -145,9 +145,12 @@
     plugins: [
         'advlist autolink lists link image charmap print preview anchor textcolor',
         'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table contextmenu paste code help wordcount'
+        'insertdatetime media table contextmenu paste code help wordcount',
+        'image code'
     ],
-    toolbar: 'insert | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+    toolbar: 'insert | link image | code | undo redo |  formatselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+
+    
     content_css: [
         '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
         '//www.tinymce.com/css/codepen.min.css']

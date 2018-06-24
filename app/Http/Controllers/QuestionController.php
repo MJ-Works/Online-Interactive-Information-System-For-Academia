@@ -51,8 +51,13 @@ class QuestionController extends Controller
     public function viewQuestion($id)
     {
        $question = question::with('tags','answers','User')->find($id);
+       $answerId = array();
+        foreach($question->answers as $answer)
+            array_push($answerId, $answer->id);
+        
+        $allAnswer = answer::with('User')->orderBy('created_at', 'desc')->find($answerId);
        //return $question;
-        return view('post.ViewQuestion',compact('error','question'));
+        return view('post.ViewQuestion',compact('error','question', 'allAnswer'));
     }
 
     public function postAnswer($id, Request $request)

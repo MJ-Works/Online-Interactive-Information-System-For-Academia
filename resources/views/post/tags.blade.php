@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <p>Tag Search</p>
+            <p><a href="{{ route('Home') }}">Home</a></p>
             <p><a href="{{ route('Tags') }}">Tags</a></p>
             <p><a href="{{ route('Departments') }}">Departments</a></p>
             <p><a href="{{ route('Search') }}">Search</a></p>

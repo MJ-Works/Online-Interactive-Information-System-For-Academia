@@ -11,4 +11,9 @@ class answer extends Model
     {
         return $this->hasMany('App\comment');
     }
+
+    public function User()
+    {
+        return $this->belongsTo('App\User')->withDefault();
+    }
 }

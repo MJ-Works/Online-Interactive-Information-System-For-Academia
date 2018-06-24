@@ -4,10 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <p>Home</p>
-            <p><a href="">Tags</a></p>
-            <p><a href="">Users</a></p>
-            <p><a href="">Search</a></p>
+            <p><a href="{{ route('Home') }}">Home</a></p>
+            <p><a href="{{ route('Tags') }}">Tags</a></p>
+            <p><a href="{{ route('Departments') }}">Departments</a></p>
+            <p><a href="{{ route('Search') }}">Search</a></p>
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
@@ -24,15 +24,24 @@
                         <form class="form-horizontal" method="POST" action="{{ route('QuestionVote',$question->id) }}"> {{ csrf_field() }} <button name = "submit" value = "DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
                    </div>
                    <div class="col-md-10 col-md-offset-1 question">
-                        <p>{{strip_tags($question->Question)}}
+                        <p><?php echo($question->Question) ?>
                         </p>
                    </div>
+                   <div class="col-md-8 col-md-offset-8">Question By: <a href="">{{$question->user->name}}</a></div>
+                   <div class="col-md-1">
+                       <p>Tags:</p>
+                   </div>
+                   @foreach($question->tags as $tag)
+                        <div class="col-md-1">
+                        <a href="{{ route('QuestionByTag',$tag->id) }}"> <span class="tag">{{$tag->TagName}}</span> <span>   </span> </a> 
+                        </div>
+                    @endforeach
                 </div>
                 <div class="panel-body">
                     <h3>{{$question->answers->count()}} Answers</h3>
                 </div>
                 <hr>
-                @foreach($question->answers as $answer)
+                @foreach($allAnswer as $answer)
                 <div class="panel-body">
                    <div class="col-md-1">
                         <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id, $question->id) }}"> {{ csrf_field() }} <button name = "submit" value= "UpVote" Type = "submit" class="btn btn-success vote">+</button></form>
@@ -40,9 +49,13 @@
                         <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id, $question->id) }}"> {{ csrf_field() }} <button name = "submit" value="DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
                    </div>
                    <div class="col-md-10 col-md-offset-1 question">
-                        <p>{{strip_tags($answer->Answer)}}
+                        <p><?php echo($answer->Answer) ?>
                         </p>
                    </div>
+                   @if($answer->user->id == Auth::user()->id)
+                    <div class="col-md-8 col-md-offset-8">Comment By: <a href="">{{$answer->user->name}}</a></div>
+                    @else <div class="col-md-8 col-md-offset-8">Answer By: <a href="">{{$answer->user->name}}</a></div>
+                    @endif
                 </div>
                 @endforeach
 
