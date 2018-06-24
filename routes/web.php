@@ -33,3 +33,5 @@ Route::post('/voteAnswer/{id}', 'QuestionController@voteAnswer')->name('AnswerVo
 Route::post('/voteQuestion/{id}', 'QuestionController@voteQuestion')->name('QuestionVote');
 Route::get('/tags','QuestionController@tags')->name('Tags');
 Route::get('/questionByTag/{id}', 'QuestionController@questionbyTag')->name('QuestionByTag');
+Route::get('/departments','QuestionController@departments')->name('Departments');
+Route::get('/questionByDepartment/{id}', 'QuestionController@questionbyDepartment')->name('QuestionByDepartment');

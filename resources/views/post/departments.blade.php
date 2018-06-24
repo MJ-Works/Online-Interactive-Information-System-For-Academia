@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-2">
             <p>Home</p>
-            <p><a href="{{ route('Tags') }}">Tags</a></p>
+            <p><a href="{{ route('Tags') }}">Departments</a></p>
             <p><a href="">Users</a></p>
             <p><a href="">Search</a></p>
         </div>
@@ -15,8 +15,8 @@
                 
                 <div class="panel-body">
                     @foreach($tags as $tag)
-                        <div class="col-md-2">
-                            <a href="{{ route('QuestionByTag',$tag->id) }}"> <span class="tag">{{$tag->TagName}}</span> <span>   </span> </a> 
+                        <div class="col-sm-2">
+                            <a href="{{ route('QuestionByDepartment',$tag->id) }}"> <span class="tag">{{$tag->DepartmentName}}</span> <span>   </span> </a> 
                         </div>
                     @endforeach
                 </div>

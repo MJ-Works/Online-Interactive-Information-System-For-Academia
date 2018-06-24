@@ -29,7 +29,7 @@ class QuestionController extends Controller
         
         $dbvar = new question();
         $dbvar->user_id = Auth::user()->id;
-        $dbvar->dept_id = '2';
+        $dbvar->departments_id = $request->Department;
         $dbvar->Heading = $request->Heading;
         $dbvar->Question = $request->Question;
         $dbvar->Votes = 0;
@@ -130,6 +130,25 @@ class QuestionController extends Controller
     public function questionByTag($id)
     {
         $questions = tags::find($id)->questions;
+        $questionId = array();
+        foreach($questions as $question)
+            array_push($questionId, $question->id);
+        
+        $allQuestion = question::with('tags','answers','User')->find($questionId);
+        
+        return view('home',compact('allQuestion'));
+    }
+
+    public function departments()
+    {
+        $tags = departments::all();
+        return view('post.departments',compact('tags'));
+    }
+
+    public function questionByDepartment($id)
+    {
+        $questions = departments::find($id)->questions;
+    
         $questionId = array();
         foreach($questions as $question)
             array_push($questionId, $question->id);

@@ -16,13 +16,13 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('dept_id');
+            $table->unsignedInteger('departments_id');
             $table->integer('votes');
             $table->string('Heading');
             $table->string('Question');
             $table->boolean('PrivateQuestion');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('dept_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign('departments_id')->references('id')->on('departments')->onDelete('cascade');
             $table->timestamps();
         });
     }
