@@ -120,4 +120,22 @@ class QuestionController extends Controller
 
         return redirect()->route('Question', ['id' => $id]);
     }
+
+    public function tags()
+    {
+        $tags = tags::all();
+        return view('post.tags',compact('tags'));
+    }
+
+    public function questionByTag($id)
+    {
+        $questions = tags::find($id)->questions;
+        $questionId = array();
+        foreach($questions as $question)
+            array_push($questionId, $question->id);
+        
+        $allQuestion = question::with('tags','answers','User')->find($questionId);
+        
+        return view('home',compact('allQuestion'));
+    }
 }
