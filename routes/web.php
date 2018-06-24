@@ -28,6 +28,7 @@ Route::get('/departments','QuestionController@departments')->name('Departments')
 Route::get('/questionByDepartment/{id}', 'QuestionController@questionbyDepartment')->name('QuestionByDepartment');
 Route::get('/search','QuestionController@search')->name('Search');
 Route::post('/searchQuestion', 'QuestionController@searchQuestion')->name('SearchQuestion');
+Route::get('/getUser/{id}', 'QuestionController@getUser')->name('User');
 
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/addQuestion', 'QuestionController@addQuestion')->name('addQuestion');

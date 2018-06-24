@@ -29,7 +29,7 @@
                         <p><?php echo($question->Question) ?>
                         </p>
                    </div>
-                   <div class="col-md-8 col-md-offset-8">Question By: <a href="">{{$question->user->name}}</a></div>
+                   <div class="col-md-8 col-md-offset-8">Question By: <a href="{{ route('User',$question->user->id) }}">{{$question->user->name}}</a></div>
                    <div class="col-md-1">
                        <p>Tags:</p>
                    </div>
@@ -60,10 +60,11 @@
                         </p>
                    </div>
                    @if($answer->user->id == Auth::user()->id)
-                    <div class="col-md-8 col-md-offset-8">Comment By: <a href="">{{$answer->user->name}}</a></div>
-                    @else <div class="col-md-8 col-md-offset-8">Answer By: <a href="">{{$answer->user->name}}</a></div>
+                    <div class="col-md-8 col-md-offset-8">Comment By: <a href="{{ route('User',$answer->user->id) }}">{{$answer->user->name}}</a></div>
+                    @else <div class="col-md-8 col-md-offset-8">Answer By: <a href="{{ route('User',$answer->user->id) }}">{{$answer->user->name}}</a></div>
                     @endif
                 </div>
+                <hr>
                 @endforeach
 
                 <div class="panel-body">

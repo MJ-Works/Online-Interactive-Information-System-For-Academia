@@ -24,7 +24,7 @@
                                 <a href="{{ route('QuestionByTag',$tag->id) }}"> <span class="tag">{{$tag->TagName}}</span> <span>   </span> </a> 
                                 @endforeach
                            </div>
-                            <div class="col-md-6 poster">Posted by <a href="">{{$question->user->name}}</a></div>
+                            <div class="col-md-6 poster">Posted by <a href="{{ route('User',$question->user->id) }}">{{$question->user->name}}</a></div>
                         </div>
                    </div>
                 </div>

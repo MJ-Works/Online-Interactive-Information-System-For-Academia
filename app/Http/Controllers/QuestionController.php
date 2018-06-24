@@ -10,6 +10,7 @@ use App\question_tag;
 use App\departments;
 use App\VoteTable;
 use Auth;
+use App\User;
 
 class QuestionController extends Controller
 {
@@ -55,7 +56,7 @@ class QuestionController extends Controller
         foreach($question->answers as $answer)
             array_push($answerId, $answer->id);
         
-        $allAnswer = answer::with('User')->orderBy('created_at', 'desc')->find($answerId);
+        $allAnswer = answer::with('User')->orderBy('UpVote', 'desc')->find($answerId);
        //return $question;
         return view('post.ViewQuestion',compact('error','question', 'allAnswer'));
     }
@@ -75,6 +76,7 @@ class QuestionController extends Controller
     public function voteAnswer($id, Request $request)
     {
         $answer = answer::find($id);
+        $user = User::find($answer->user_id);
 
         if($answer->user_id == Auth::user()->id)
             return redirect()->route('Question', ['id' => $answer->question_id]);
@@ -89,10 +91,18 @@ class QuestionController extends Controller
         }
 
         if($request->submit == "UpVote")
+        {
             $answer->UpVote++;
-        else $answer->UpVote--;
+            $user->rating+=30;
+        }
+        else
+        {
+            $answer->UpVote--;
+            $user->rating-=10;
+        }
 
         $answer->save();
+        $user->save();
 
         $dbvar = new VoteTable();
         $dbvar->answer_id = $id;
@@ -105,6 +115,7 @@ class QuestionController extends Controller
     public function voteQuestion($id, Request $request)
     {
         $question = question::find($id);
+        $user = User::find($question->user_id);
 
         if($question->user_id == Auth::user()->id)
         return redirect()->route('Question', ['id' => $id]);
@@ -119,10 +130,19 @@ class QuestionController extends Controller
         }
 
         if($request->submit == "UpVote")
+        {
             $question->votes++;
-        else $question->votes--;
+            $user->rating+=30;
+        }
+            
+        else
+        {
+            $question->votes--;
+            $user->rating-=10;
+        } 
 
         $question->save();
+        $user->save();
 
         $dbvar = new VoteTable();
         $dbvar->question_id = $id;
@@ -224,5 +244,11 @@ class QuestionController extends Controller
         
         $answer->save();
         return redirect()->route('Question', ['id' => $answer->question_id]);
+    }
+
+    public function getUser($id)
+    {
+        $user = User::find($id);
+        return view('profile',compact('user'));
     }
 }
