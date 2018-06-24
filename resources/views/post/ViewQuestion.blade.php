@@ -11,7 +11,11 @@
         </div>
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading"><strong id="heading">{{$question->Heading}}</strong></div>
+                <div class="panel-heading"><strong id="heading">{{$question->Heading}}</strong> 
+                    @if(Auth::user()->id == $question->user_id)
+                        <a class="col-md-offset-10" href="{{ route('EditQuestion',$question->id) }}">Edit</a>
+                    @endif
+                </div>
 
                 <div class="panel-body">
                    <div class="col-md-1">

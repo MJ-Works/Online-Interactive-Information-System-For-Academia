@@ -175,4 +175,34 @@ class QuestionController extends Controller
         $allQuestion = question::with('tags','answers','User')->orderBy('created_at', 'desc')->where('Heading', 'like', $like)->get();
         return view('home',compact('allQuestion'));
     }
+
+    public function editQuestion($id)
+    {
+        $allTag = tags::all();
+        $allDepartment = departments::all();
+        $question = question::with('tags')->find($id);
+        return view('post.EditQuestion',compact('error','allTag','allDepartment','question'));
+    }
+
+    public function postEditQuestion($id, Request $request)
+    {
+        $question = question::find($id);
+        $question->departments_id = $request->Department;
+        $question->Heading = $request->Heading;
+        $question->Question = $request->Question;
+        $question->PrivateQuestion = $request->PrivateQuestion;
+
+        question_tag::where('question_id', $id)->delete();
+
+        foreach($request->Tags as $tag)
+        {
+            $dbvar1 = new question_tag();
+            $dbvar1->question_id = $id;
+            $dbvar1->tags_id = $tag;
+            $dbvar1->save();
+        }
+
+        $question->save();
+        return redirect('home');
+    }
 }

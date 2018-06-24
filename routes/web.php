@@ -37,3 +37,5 @@ Route::get('/departments','QuestionController@departments')->name('Departments')
 Route::get('/questionByDepartment/{id}', 'QuestionController@questionbyDepartment')->name('QuestionByDepartment');
 Route::get('/search','QuestionController@search')->name('Search');
 Route::post('/searchQuestion', 'QuestionController@searchQuestion')->name('SearchQuestion');
+Route::get('/editQuestion/{id}', 'QuestionController@editQuestion')->name('EditQuestion');
+Route::post('/postEditQuestion/{id}', 'QuestionController@postEditQuestion')->name('PostEditQuestion');
