@@ -38,6 +38,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        @auth
+                            <li><a href="{{ route('addQuestion') }}">Ask Question</a></li>
+                            <li><a href="{{ route('Department') }}">Add Department</a></li>
+                            <li><a href="{{ route('Tag') }}">Add Tag</a></li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->

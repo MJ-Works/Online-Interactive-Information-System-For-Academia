@@ -12,9 +12,11 @@
         <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong id="heading">{{$question->Heading}}</strong> 
-                    @if(Auth::user()->id == $question->user_id)
-                        <a class="col-md-offset-10" href="{{ route('EditQuestion',$question->id) }}">Edit</a>
-                    @endif
+                    @auth
+                        @if(Auth::user()->id == $question->user_id)
+                            <a class="col-md-offset-10" href="{{ route('EditQuestion',$question->id) }}">Edit</a>
+                        @endif
+                    @endauth
                 </div>
 
                 <div class="panel-body">
@@ -48,9 +50,11 @@
                         <p class="votes">{{$answer->UpVote}}</p>
                         <form class="form-horizontal" method="POST" action="{{ route('AnswerVote',$answer->id, $question->id) }}"> {{ csrf_field() }} <button name = "submit" value="DownVote" Type = "submit" class="btn btn-danger vote">-</button></form>
                    </div>
+                   @auth
                    @if(Auth::user()->id == $answer->user_id)
                         <a class="col-md-offset-10" href="{{ route('EditAnswer',$answer->id) }}">Edit</a>
                     @endif
+                    @endauth
                    <div class="col-md-10 col-md-offset-1 question">
                         <p><?php echo($answer->Answer) ?>
                         </p>
