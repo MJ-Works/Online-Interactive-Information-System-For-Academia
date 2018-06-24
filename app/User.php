@@ -46,4 +46,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\comment');
     }
+    public function isAdmin(){
+        return $this->user_type == 'Admin';
+    }
 }

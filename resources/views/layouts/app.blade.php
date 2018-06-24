@@ -38,10 +38,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
-                        @auth
-                            <li><a href="{{ route('addQuestion') }}">Ask Question</a></li>
+                        @if(Auth::check() && Auth::user()->user_type == "Admin")
                             <li><a href="{{ route('Department') }}">Add Department</a></li>
                             <li><a href="{{ route('Tag') }}">Add Tag</a></li>
+                        @endif
+                        @auth
+                            <li><a href="{{ route('addQuestion') }}">Ask Question</a></li>        
                         @endauth
                     </ul>
 
