@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('user_type')->default("SimpleUser");
             $table->integer('rating')->default(0);
             $table->string('password');
+            $table->string('designation');
             $table->unsignedInteger('departments_id');
             $table->rememberToken();
             $table->timestamps();

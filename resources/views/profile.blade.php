@@ -16,6 +16,7 @@
                    <div class="col-md-12"><h2>Name: {{$user->name}}</h2></div>
                    <div class="col-md-12"><h2>Email: {{$user->email}}</h2></div>
                    <div class="col-md-12"><h2>Reputation: {{$user->rating}}</h2></div>
+                   <div class="col-md-12"><h2>Designation: {{$user->designation}}</h2></div>
                 </div>
         </div>
     </div>

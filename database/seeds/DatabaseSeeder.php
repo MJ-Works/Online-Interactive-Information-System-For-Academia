@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'iammonmoy@gmail.com',
             'password' => bcrypt('512345monmoy'),
             'user_type' => 'Admin',
-            'departments_id' => 1
+            'departments_id' => 1,
+            'designation' => 'Teacher'
         ]);
     }
 }
