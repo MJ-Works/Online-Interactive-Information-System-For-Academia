@@ -3,24 +3,18 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
-            <p>Home</p>
-            <p><a href="{{ route('Home') }}">Home</a></p>
-            <p><a href="{{ route('Tags') }}">Tags</a></p>
-            <p><a href="{{ route('Departments') }}">Departments</a></p>
-            <p><a href="{{ route('Search') }}">Search</a></p>
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Top Questions</strong></div>
                 @foreach($allQuestion as $question)
+                <hr>
                     @auth
                     @if(($question->PrivateQuestion =='1' && $question->departments_id == Auth::user()->departments_id) || $question->PrivateQuestion =='0' || ($question->PrivateQuestion =='1' && $question->user_id == Auth::user()->id))
                         <div class="panel-body">
                         <div class="col-md-2 votes">{{$question->votes}} Votes</div>
                         <div class="col-md-2 answer">{{$question->answers->count()}} Answer</div>
-                        <div class="col-md-8 question">
-                                <a href="{{url('viewQuestion',$question->id)}}">{{$question->Heading}}</a>
+                        <div class="col-md-8">
+                                <a class="question" href="{{url('viewQuestion',$question->id)}}"><strong> <div id="heading">{{$question->Heading}}</div></strong></a>
                                 <div class="row">
                                     <div class="col-md-6">
                                         @foreach($question->tags as $tag)

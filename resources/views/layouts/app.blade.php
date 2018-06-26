@@ -16,7 +16,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default navbar-static-top my-nav">
             <div class="container">
                 <div class="navbar-header">
 
@@ -29,26 +29,51 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/home') }}">
+                    <a class="navbar-brand pull-left" href="{{ url('/home') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav my-menu">
                         &nbsp;
-                        @if(Auth::check() && Auth::user()->user_type == "Admin")
-                            <li><a href="{{ route('Department') }}">Add Department</a></li>
-                            <li><a href="{{ route('Tag') }}">Add Tag</a></li>
-                        @endif
-                        @auth
+                        <li><a href="{{ route('Home') }}">Home</a></li>
+
+                         @auth
                             <li><a href="{{ route('addQuestion') }}">Ask Question</a></li>        
                         @endauth
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Question Search <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ route('Tags') }}">Tags</a></li>
+                                <li><a href="{{ route('Departments') }}">Departments</a></li>
+                                <li><a href="{{ route('Search') }}">Search By Heading</a></li>
+                            </ul>
+                        </li>
+                        
+                        @if(Auth::check() && Auth::user()->user_type == "Admin")
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    Admin <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ route('Department') }}">Add Department</a></li>
+                                    <li><a href="{{ route('Tag') }}">Add Tag</a></li>
+                                </ul>
+                            </li>
+                            
+                        @endif
+                    
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right my-menu">
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>

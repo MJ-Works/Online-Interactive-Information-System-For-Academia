@@ -3,18 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
-            <p><a href="{{ route('Home') }}">Home</a></p>
-            <p><a href="{{ route('Tags') }}">Tags</a></p>
-            <p><a href="{{ route('Departments') }}">Departments</a></p>
-            <p><a href="{{ route('Search') }}">Search</a></p>
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong id="heading">{{$question->Heading}}</strong> 
                     @auth
                         @if(Auth::user()->id == $question->user_id)
-                            <a class="col-md-offset-10" href="{{ route('EditQuestion',$question->id) }}">Edit</a>
+                            <a style="color:black;" class="col-md-offset-10" href="{{ route('EditQuestion',$question->id) }}">Edit</a>
                         @endif
                     @endauth
                 </div>
@@ -89,7 +83,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success">
                                     Submit
                                 </button>
                         </div>
