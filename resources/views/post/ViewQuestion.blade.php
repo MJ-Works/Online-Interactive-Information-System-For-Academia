@@ -34,7 +34,7 @@
                        <p>Tags:</p>
                    </div>
                    @foreach($question->tags as $tag)
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                         <a href="{{ route('QuestionByTag',$tag->id) }}"> <span class="tag">{{$tag->TagName}}</span> <span>   </span> </a> 
                         </div>
                     @endforeach
@@ -59,7 +59,7 @@
                         <p><?php echo($answer->Answer) ?>
                         </p>
                    </div>
-                   @if($answer->user->id == Auth::user()->id)
+                   @if($answer->user->id == $question->user_id)
                     <div class="col-md-8 col-md-offset-8">Comment By: <a href="{{ route('User',$answer->user->id) }}">{{$answer->user->name}}</a></div>
                     @else <div class="col-md-8 col-md-offset-8">Answer By: <a href="{{ route('User',$answer->user->id) }}">{{$answer->user->name}}</a></div>
                     @endif
