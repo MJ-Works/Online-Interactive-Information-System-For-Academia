@@ -32,8 +32,8 @@
                             <div class="panel-body">
                             <div class="col-md-2 votes">{{$question->votes}} Votes</div>
                             <div class="col-md-2 answer">{{$question->answers->count()}} Answer</div>
-                            <div class="col-md-8 question">
-                                    <a href="{{url('viewQuestion',$question->id)}}">{{$question->Heading}}</a>
+                            <div class="col-md-8">
+                                    <a href="{{url('viewQuestion',$question->id)}}"><strong> <div id="heading">{{$question->Heading}}</div></strong></a>
                                     <div class="row">
                                         <div class="col-md-6">
                                             @foreach($question->tags as $tag)

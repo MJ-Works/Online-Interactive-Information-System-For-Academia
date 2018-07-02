@@ -78,8 +78,8 @@
 
                                      <div class="col-md-6 form-check">
                                         @if($question->PrivateQuestion == 0)
-                                        <input class="form-check-input" type="radio" name="PrivateQuestion" id="PrivateQuestionRadio2" value="1" checked>
-                                        @else <input class="form-check-input" type="radio" name="PrivateQuestion" id="PrivateQuestionRadio2" value="1">
+                                        <input class="form-check-input" type="radio" name="PrivateQuestion" id="PrivateQuestionRadio2" value="0" checked>
+                                        @else <input class="form-check-input" type="radio" name="PrivateQuestion" id="PrivateQuestionRadio2" value="0">
                                         @endif
                                         <label class="form-check-label" for="PrivateQuestionRadio2">
                                             Public Question

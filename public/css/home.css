@@ -1,6 +1,6 @@
 body
 {
-    background: gainsboro;
+    background: whitesmoke;
 }
 .my-nav{
     background: #4395f4;
@@ -118,7 +118,7 @@ body
 }
 .question
 {
-    font-size: 25px;
+    font-size: 18px;
 }
 #heading
 {
@@ -132,7 +132,7 @@ body
 {
     font-weight: bold;
     font-size: 20px;
-    text-align: right;
+    text-align: center;
 }
 
 .answer

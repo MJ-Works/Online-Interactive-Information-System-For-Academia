@@ -18,8 +18,8 @@ class CreateQuestionsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('departments_id');
             $table->integer('votes');
-            $table->string('Heading');
-            $table->string('Question');
+            $table->longText('Heading');
+            $table->longText('Question');
             $table->boolean('PrivateQuestion');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('departments_id')->references('id')->on('departments')->onDelete('cascade');
